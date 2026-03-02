@@ -30,16 +30,21 @@ RUN a2enmod rewrite
 RUN echo "upload_max_filesize = 50M" > /usr/local/etc/php/conf.d/sent-web.ini \
     && echo "post_max_size = 50M"   >> /usr/local/etc/php/conf.d/sent-web.ini
 
+# copy entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 # copy application
 COPY src/ /var/www/html/src/
 
-# ensure uploads directory exists with correct permissions
-RUN mkdir -p /var/www/html/src/uploads \
-    && chown -R www-data:www-data /var/www/html/src/uploads
+# stash a seed copy of uploads so the entrypoint can populate a fresh volume
+RUN mkdir -p /opt/uploads-seed \
+    && cp -r /var/www/html/src/uploads/. /opt/uploads-seed/ \
+    && chown -R www-data:www-data /var/www/html/src/uploads /opt/uploads-seed
 
 EXPOSE 3000
 
 # tini as PID 1 ensures SIGTERM is properly forwarded to apache,
 # preventing the 'permission denied' error on docker stop
-ENTRYPOINT ["/usr/bin/tini", "--"]
+ENTRYPOINT ["/usr/bin/tini", "--", "/usr/local/bin/docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
