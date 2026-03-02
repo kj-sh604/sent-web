@@ -1,0 +1,2 @@
+# prevent PHP execution in uploads directory
+php_flag engine off
