@@ -3,7 +3,11 @@
 > suckless's sent tool ported to the very sucky web world
 
 A web-based reimplementation of [suckless sent](https://tools.suckless.org/sent/)
-using pure PHP and vanilla JavaScript. 
+using pure PHP and vanilla JavaScript.
+
+<img width="1280" height="800" alt="sent0" src="https://github.com/user-attachments/assets/0c503bd4-3609-4e36-ae23-77b7f0711736" />
+<br><br>
+<img width="1920" height="1080" alt="sent1" src="https://github.com/user-attachments/assets/00a6880b-e310-45ce-8de2-6733e8d2676f" />
 
 ## features
 
