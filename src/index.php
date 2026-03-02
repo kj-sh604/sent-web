@@ -104,9 +104,9 @@ questions?</textarea>
                 fg: '#000000',
                 bg: '#ffffff',
                 fontFamily: '',
-                lineSpacing: 1.4,
-                usableWidth: 0.85,
-                usableHeight: 0.85,
+                lineSpacing: 1.25,
+                usableWidth: 0.80,
+                usableHeight: 0.80,
             },
 
             init() {
