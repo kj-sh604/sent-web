@@ -7,7 +7,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sent-web</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kj-sh604/noir.css@latest/out/noir.min.css">
-    <style> :root { --sent-fg: #000000; --sent-bg: #ffffff; --sent-font: 'Noto Color Emoji', 'DejaVu Sans', sans-serif; } body { max-width: 960px; margin: 0 auto; padding: 1rem; } .subtitle { opacity: 0.6; font-size: 0.9em; margin-top: -0.8em; } /* ── controls ── */ #controls { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1rem; padding: 0.75rem; border: 1px solid currentColor; border-radius: 4px; } #controls label { display: flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; } #controls input[type="color"] { width: 2rem; height: 2rem; padding: 0; border: 1px solid currentColor; cursor: pointer; background: none; } #controls select { max-width: 200px; } .upload-area { display: flex; align-items: center; gap: 0.5rem; } #upload-input { display: none; } #upload-status { font-size: 0.85rem; opacity: 0.7; } /* ── editor ── */ #input { width: 100%; min-height: 420px; font-family: monospace; font-size: 0.95rem; resize: vertical; tab-size: 4; } .btn-row { display: flex; gap: 0.5rem; margin-top: 0.5rem; } .hint { font-size: 0.8rem; opacity: 0.5; margin-top: 0.25rem; } /* ── presentation overlay ── */ #presentation { position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: flex-start; background: var(--sent-bg); color: var(--sent-fg); cursor: none; overflow: hidden; padding-left: 7.5%; } #presentation.active { display: flex; } #slide-content { text-align: left; white-space: pre-line; word-wrap: break-word; font-family: var(--sent-font); } #slide-content img { display: block; max-width: 85vw; max-height: 85vh; object-fit: contain; } </style>
+    <style>
+        :root {
+            --sent-fg: #000000;
+            --sent-bg: #ffffff;
+            --sent-font: 'Noto Color Emoji', 'DejaVu Sans', sans-serif;
+        }
+
+        body {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .subtitle {
+            opacity: 0.6;
+            font-size: 0.9em;
+            margin-top: -0.8em;
+        }
+
+        /* ── controls ── */
+        #controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border: 1px solid currentColor;
+            border-radius: 4px;
+        }
+
+        #controls label {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        #controls input[type="color"] {
+            width: 2rem;
+            height: 2rem;
+            padding: 0;
+            border: 1px solid currentColor;
+            cursor: pointer;
+            background: none;
+        }
+
+        #controls select {
+            max-width: 200px;
+        }
+
+        .upload-area {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        #upload-input {
+            display: none;
+        }
+
+        #upload-status {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* ── editor ── */
+        #input {
+            width: 100%;
+            min-height: 420px;
+            font-family: monospace;
+            font-size: 0.95rem;
+            resize: vertical;
+            tab-size: 4;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .hint {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            margin-top: 0.25rem;
+        }
+
+        /* ── presentation overlay ── */
+        #presentation {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: flex-start;
+            background: var(--sent-bg);
+            color: var(--sent-fg);
+            cursor: none;
+            overflow: hidden;
+            padding-left: 7.5%;
+        }
+
+        #presentation.active {
+            display: flex;
+        }
+
+        #slide-content {
+            text-align: left;
+            white-space: pre-line;
+            word-wrap: break-word;
+            font-family: var(--sent-font);
+        }
+
+        #slide-content img {
+            display: block;
+            max-width: 85vw;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+    </style>
 </head>
 
 <body>
@@ -92,7 +212,7 @@ questions?</textarea>
     </div>
 
     <script>
-   // sent-web — vanilla JS presentation engine
+        // sent-web — vanilla JS presentation engine
 
         const App = {
             slides: [],
@@ -246,9 +366,6 @@ questions?</textarea>
 
                 // stop presentation whenever fullscreen is exited (covers browser-
                 // intercepted Escape that never reaches the keydown handler).
-                // Re-render on enter so the slide is drawn with the settled fullscreen
-                // viewport dimensions (requestFullscreen is async, so the initial
-                // renderSlide() call may use pre-fullscreen vw/vh values).
                 document.addEventListener('fullscreenchange', () => {
                     if (!document.fullscreenElement && this.presenting) {
                         this.stopPresentation();
@@ -378,16 +495,16 @@ questions?</textarea>
                     }
                     img.alt = slide.img;
                     // changed to reflect the fullscreen viewport.
-                    const pw = pres.offsetWidth  || window.innerWidth;
+                    const pw = pres.offsetWidth || window.innerWidth;
                     const ph = pres.offsetHeight || window.innerHeight;
                     const maxW = Math.floor(pw * this.settings.usableWidth);
                     const maxH = Math.floor(ph * this.settings.usableHeight);
-                    img.style.width     = maxW + 'px';
-                    img.style.height    = maxH + 'px';
-                    img.style.maxWidth  = maxW + 'px';
+                    img.style.width = maxW + 'px';
+                    img.style.height = maxH + 'px';
+                    img.style.maxWidth = maxW + 'px';
                     img.style.maxHeight = maxH + 'px';
                     img.style.objectFit = 'contain';
-                    img.style.display   = 'block';
+                    img.style.display = 'block';
                     content.appendChild(img);
                 } else {
                     // restore text-layout defaults
@@ -709,4 +826,5 @@ questions?</textarea>
         document.addEventListener('DOMContentLoaded', () => App.init());
     </script>
 </body>
+
 </html>
