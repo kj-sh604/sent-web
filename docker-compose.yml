@@ -1,0 +1,17 @@
+name: sent-web
+
+services:
+  sent-web:
+    build: .
+    image: sent-web:latest
+    container_name: sent-web
+    ports:
+      - "3000:3000"
+    volumes:
+      - uploads:/var/www/html/src/uploads
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 10s
+
+volumes:
+  uploads:
