@@ -657,15 +657,15 @@ questions?</textarea>
 
                     ctx.font = `${fontSize}px ${fontStack}`;
                     ctx.fillStyle = this.settings.fg;
-                    ctx.textBaseline = 'alphabetic';
+                    ctx.textBaseline = 'middle';
 
                     const lineH = fontSize * this.settings.lineSpacing;
-                    const totalH = lineH * (slide.lines.length - 1) + fontSize;
+                    const totalH = slide.lines.length * lineH;
                     const startX = marginX;
-                    const startY = (H - totalH) / 2 + fontSize; // first baseline
+                    const startY = (H - totalH) / 2;
 
                     slide.lines.forEach((line, i) => {
-                        ctx.fillText(line, startX, startY + i * lineH);
+                        ctx.fillText(line, startX, startY + (i + 0.5) * lineH);
                     });
                 }
 
