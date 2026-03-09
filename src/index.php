@@ -8,6 +8,37 @@
     <title>sent-web</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kj-sh604/noir.css@latest/out/noir.min.css">
     <style> :root { --sent-fg: #000000; --sent-bg: #ffffff; --sent-font: 'Noto Color Emoji', 'DejaVu Sans', sans-serif; } body { max-width: 960px; margin: 0 auto; padding: 1rem; } .subtitle { opacity: 0.6; font-size: 0.9em; margin-top: -0.8em; } /* ── controls ── */ #controls { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1rem; padding: 0.75rem; border: 1px solid currentColor; border-radius: 4px; } #controls label { display: flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; } #controls input[type="color"] { width: 2rem; height: 2rem; padding: 0; border: 1px solid currentColor; cursor: pointer; background: none; } #controls select { max-width: 200px; } .upload-area { display: flex; align-items: center; gap: 0.5rem; } #upload-input { display: none; } #upload-status { font-size: 0.85rem; opacity: 0.7; } /* ── editor ── */ #input { width: 100%; min-height: 420px; font-family: monospace; font-size: 0.95rem; resize: vertical; tab-size: 4; } .btn-row { display: flex; gap: 0.5rem; margin-top: 0.5rem; } .hint { font-size: 0.8rem; opacity: 0.5; margin-top: 0.25rem; } /* ── presentation overlay ── */ #presentation { position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: flex-start; background: var(--sent-bg); color: var(--sent-fg); cursor: none; overflow: hidden; padding-left: 7.5%; } #presentation.active { display: flex; } #slide-content { text-align: left; white-space: pre-line; word-wrap: break-word; font-family: var(--sent-font); } #slide-content img { display: block; max-width: 85vw; max-height: 85vh; object-fit: contain; } </style>
+    <script>
+    /*
+    @licstart  The following is the entire license notice for the
+    JavaScript code in this page.
+
+    Copyright (c) 2026 kj_sh604/kj-sh604/kjsh604
+
+    SPDX-License-Identifier: MIT
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+    @licend  The above is the entire license notice
+    for the JavaScript code in this page.
+    */
+    </script>
 </head>
 
 <body>
