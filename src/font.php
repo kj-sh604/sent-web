@@ -15,10 +15,16 @@ if ($file === false || !file_exists($file)) {
 
 $real    = realpath($file);
 $allowed = ['/usr/share/fonts', '/usr/local/share/fonts'];
-$ok      = false;
+
+foreach (glob('/home/*', GLOB_ONLYDIR) as $home) {
+    $allowed[] = $home . '/.local/share/fonts';
+    $allowed[] = $home . '/.fonts';
+}
+
+$ok = false;
 
 foreach ($allowed as $dir) {
-    if (str_starts_with($real, $dir)) {
+    if (str_starts_with($real, realpath($dir) ?: $dir)) {
         $ok = true;
         break;
     }
