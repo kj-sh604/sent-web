@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# sent-web — app.py
 
 import base64
 import os
@@ -12,6 +11,7 @@ import magic
 from flask import Flask, Response, jsonify, request, send_file, send_from_directory
 
 app = Flask(__name__, static_folder=None)
+app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024  # 50 MB upload cap
 
 UPLOAD_DIR = Path(__file__).parent / "uploads"
 UPLOAD_DIR.mkdir(mode=0o755, exist_ok=True)
@@ -84,11 +84,21 @@ def upload():
 
 @app.route("/fonts")
 def fonts():
-    result = subprocess.run(
-        ["fc-list", "--format=%{family}|%{style}|%{file}\n"],
-        capture_output=True,
-        text=True,
-    )
+    try:
+        result = subprocess.run(
+            ["fc-list", "--format=%{family}|%{style}|%{file}\n"],
+            capture_output=True,
+            text=True,
+            shell=False,
+            timeout=10,
+            check=False,
+        )
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        return jsonify([])
+
+    if result.returncode != 0:
+        return jsonify([])
+
     if not result.stdout.strip():
         return jsonify([])
 
