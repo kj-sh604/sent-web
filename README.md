@@ -11,14 +11,14 @@ using Python and vanilla JavaScript.
 
 ## features
 
-- **sent-compatible format** — paragraphs = slides, `#` comments, `@image`
+- **sent-compatible format** - paragraphs = slides, `#` comments, `@image`
   slides, `\` escapes
-- **keyboard navigation** — arrow keys, hjkl, space, enter, backspace, pgup/pgdn
+- **keyboard navigation** - arrow keys, hjkl, space, enter, backspace, pgup/pgdn
   (same as sent)
-- **mouse navigation** — left-click right half = next, left half = prev, scroll
+- **mouse navigation** - left-click right half = next, left half = prev, scroll
   wheel
-- **image upload** — upload images and insert `@filename` references (50 MB cap)
-- **export** — download as `.sent` file for local sent, or export `.pdf` for portability
+- **image upload** - upload images and insert `@filename` references (50 MB cap)
+- **export** - download as `.sent` file for local sent, or export `.pdf` for portability
 ## usage
 
 ### docker compose (recommended)
@@ -84,13 +84,13 @@ with multiple lines
 
 ## technology
 
-- **Python 3.12+** — Flask backend
-- **vanilla JavaScript** — no npm, no webpack, no react
-- **[noir.css](https://github.com/kj-sh604/noir.css)** — classless CSS
-- **Gunicorn** — production WSGI server
-- **fontconfig** — `fc-list` for font enumeration
-- **python-magic + libmagic** — content-based upload type checks
-- **Docker** — containerized with fonts pre-installed
+- **Python 3.12+** - Flask backend
+- **vanilla JavaScript** - no npm, no webpack, no react
+- **[noir.css](https://github.com/kj-sh604/noir.css)** - classless CSS
+- **Gunicorn** - production WSGI server
+- **fontconfig** - `fc-list` for font enumeration
+- **python-magic + libmagic** - content-based upload type checks
+- **Docker** - containerized with fonts pre-installed
 
 ## license
 
