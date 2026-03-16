@@ -1,3 +1,5 @@
 src/uploads/*
 !src/uploads/.htaccess
 !src/uploads/nyan_819cac51.png
+__pycache__/
+*.pyc
