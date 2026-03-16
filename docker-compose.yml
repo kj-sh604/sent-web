@@ -8,7 +8,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - uploads:/var/www/html/src/uploads
+      - uploads:/app/uploads
     restart: unless-stopped
     init: true
     stop_grace_period: 10s
